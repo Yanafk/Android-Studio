@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -22,5 +23,8 @@ public class MainActivity extends AppCompatActivity {
         Gson gson = builder.create();
         Cat murzik = gson.fromJson(jsonText, Cat.class);
         Log.i("GSON", "Имя: " + murzik.name + "\nВозраст: " + murzik.age);
+
+        TextView TVcat = findViewById(R.id.TVcat);
+        TVcat.setText("Имя: " + murzik.name + "\nВозраст: " + murzik.age);
     }
 }

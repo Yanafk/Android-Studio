@@ -7,14 +7,15 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="70dp"
-        android:layout_height="15dp"
+        android:id="@+id/TVcat"
+        android:layout_width="231dp"
+        android:layout_height="269dp"
         android:text="TextView"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.206" />
+        app:layout_constraintVertical_bias="0.248" />
 </androidx.constraintlayout.widget.ConstraintLayout>
