@@ -3,7 +3,9 @@ package com.udacity.sandwichclub;
 import android.content.Intent;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,7 +54,7 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        populateUI();
+        populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
@@ -65,7 +67,28 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
-
+    private void populateUI(Sandwich sandwich) {
+        //объявление переменных
+        TextView tv_origin=findViewById(R.id.origin_tv);
+        TextView description_tv=findViewById(R.id.description_tv);
+        TextView ingredients_tv=findViewById(R.id.ingredients_tv);
+        TextView also_know_tv=findViewById(R.id.also_known_tv);
+        //Задаем текст переменным
+        tv_origin.setText(sandwich.getPlaceOfOrigin());
+        description_tv.setText(sandwich.getDescription());
+        //заполнение переменной массивом
+        for(String string: sandwich.getIngredients()){
+            ingredients_tv.append(string + "\n");
+        }
+        //проверка на пустоту массива
+        if(sandwich.getAlsoKnownAs().size()!=0) {
+            for (String string : sandwich.getAlsoKnownAs()) {
+                also_know_tv.append(string + "\n");
+            }
+            //задаем заглавные буквы
+            also_know_tv.setText(also_know_tv.getText().toString().substring(0, also_know_tv.getText().length() - 1));
+        } else {
+            also_know_tv.setVisibility(View.GONE);
+        }
     }
 }
