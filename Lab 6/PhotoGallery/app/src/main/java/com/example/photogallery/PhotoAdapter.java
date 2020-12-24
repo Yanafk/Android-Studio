@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.photogallery.db.PhotosDao;
 import com.example.photogallery.model.Photo;
 import com.squareup.picasso.Picasso;
 
@@ -20,10 +21,12 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
     private ImageView img;
     private TextView img_tv;
     Context context;
+    PhotosDao photosD;
 
-    public PhotoAdapter(List<Photo> photos, Context contxt) {
+    public PhotoAdapter(List<Photo> photos, Context contxt, PhotosDao DAO) {
         ph = photos;
         context = contxt;
+        photosD = DAO;
     }
 
     @NonNull
@@ -51,6 +54,14 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
             super(itemView);
             img = itemView.findViewById(R.id.imageV);
             img_tv = itemView.findViewById(R.id.textV);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int id = getLayoutPosition();
+                    Photo photo = ph.get(id);
+                    photosD.insertPhoto(photo);
+                }
+            });
         }
     }
 }
