@@ -37,6 +37,8 @@ public class PhotoGallery extends AppCompatActivity {
     Context context;
     PhotosDB DB;
     PhotosDao DAO;
+    List<Photo> ph;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +136,18 @@ public class PhotoGallery extends AppCompatActivity {
                 adapter = new PhotoAdapter(ph,context,DAO);
                 r_view.setAdapter(adapter);
                 return true;
+            case R.id.item_delete:
+                ph = DAO.LoadAll();
+                for (int i = 0; i < ph.size(); i++ ){
+                    Photo z = ph.get(i);
+                    DAO.deletePhoto(z);
+                }
+                ph = DAO.LoadAll();
+                adapter = new PhotoAdapter(ph,context,DAO);
+                r_view.setAdapter(adapter);
+                return true; 
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

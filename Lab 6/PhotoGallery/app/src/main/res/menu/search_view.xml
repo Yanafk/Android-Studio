@@ -13,4 +13,7 @@
     <item
         android:id="@+id/OnlineDB"
         android:title="OnlineDB" />
+    <item
+        android:id="@+id/item_delete"
+        android:title="Delete" />
 </menu>
